@@ -17,10 +17,10 @@ function ConfigureChanges
     Write-Host "==========================================" -ForegroundColor Yellow
     Write-Host "  Reply with any values inside of ( )     " -ForegroundColor White
     Write-Host "  Multiple values must be seperated       " -ForegroundColor White
-    Write-Host "  using ' ' Empty reply ends script       " -ForegroundColor White
+    Write-Host "  using ' ' Empty entry ends script       " -ForegroundColor White
     Write-Host "==========================================" -ForegroundColor Yellow
     
-    $do_selected_changes = Read-Host "..."
+    $do_selected_changes = Read-Host "Entry: "
     $do_selected_changes = $do_selected_changes -split " "
 
     #Remove cross device programs
@@ -51,10 +51,8 @@ function ConfigureChanges
         Write-Host "disabled windows error reporting" -ForegroundColor Green
     }
 
-    else
-    {
-        exit
-    }
+    Write-Host "Complete, please restart your computer." -ForegroundColor Yellow
+    exit
 }
 
 #begin
