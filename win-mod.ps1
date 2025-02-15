@@ -1,7 +1,7 @@
 #Updated - 2/25/2025
 
 
-#Reqires -RunAsAdministrator
+#Requires -RunAsAdministrator
 
 function ConfigureChanges
 {
