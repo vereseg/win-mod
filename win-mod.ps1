@@ -31,8 +31,8 @@ function ConfigureChanges
     #Remove cross device programs
     if($do_selected_changes -eq 0)
     {
-        Get-AppxPackage MicrosoftWindows.CrossDevice -AllUsers | Remove-AppxPackage -AllUsers
-        Get-AppxPackage Microsoft.YourPhone -AllUsers | Remove-AppxPackage -AllUsers
+        Get-AppxPackage MicrosoftWindows.CrossDevice | Remove-AppxPackage
+        Get-AppxPackage Microsoft.YourPhone | Remove-AppxPackage
     }
 
     #Start Menu web search
