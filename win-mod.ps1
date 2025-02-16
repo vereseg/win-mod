@@ -1,6 +1,5 @@
 #Updated - 2/25/2025
 
-
 #Requires -RunAsAdministrator
 
 function ConfigureChanges
@@ -20,15 +19,17 @@ function ConfigureChanges
     Write-Host "  Disable Windows Error Reporting    (3)  " -ForegroundColor White
     Write-Host "                                          " -ForegroundColor White
     Write-Host "==========================================" -ForegroundColor Yellow
+    Write-Host "                                          " -ForegroundColor White
     Write-Host "  Reply with any values inside of ( )     " -ForegroundColor White
     Write-Host "  Multiple values must be seperated       " -ForegroundColor White
     Write-Host "  using ' ' Empty entry ends script       " -ForegroundColor White
+    Write-Host "                                          " -ForegroundColor White
     Write-Host "==========================================" -ForegroundColor Yellow
     
     $do_selected_changes = Read-Host "Entry: "
     $do_selected_changes = $do_selected_changes -split " "
 
-    #Remove cross device programs
+    #Cross device programs
     if($do_selected_changes -eq 0)
     {
         Get-AppxPackage MicrosoftWindows.CrossDevice | Remove-AppxPackage
@@ -42,14 +43,14 @@ function ConfigureChanges
         Write-Host "disabled start menu web search." -ForegroundColor Green
     }
 
-    #Old context menu
+    #Context menu
     if($do_selected_changes -eq 2)
     {
         reg add "HKCU\Software\Classes\CLSID\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\InprocServer32" /f /ve
         Write-Host "switched to old context menu" -ForegroundColor Green
     }
 
-    #Disable windows error reporting
+    #Windows error reporting
     if($do_selected_changes -eq 2)
     {
         Disable-WindowsErrorReporting
@@ -60,7 +61,7 @@ function ConfigureChanges
     exit
 }
 
-function ConfigureChangesRevert
+function RevertChanges
 {
     Write-Host "==========================================" -ForegroundColor Yellow
     Write-Host "                                          " -ForegroundColor White
@@ -77,9 +78,11 @@ function ConfigureChangesRevert
     Write-Host "  Disable Windows Error Reporting    (3)  " -ForegroundColor White
     Write-Host "                                          " -ForegroundColor White
     Write-Host "==========================================" -ForegroundColor Yellow
+    Write-Host "                                          " -ForegroundColor White
     Write-Host "  Reply with any values inside of ( )     " -ForegroundColor White
     Write-Host "  Multiple values must be seperated       " -ForegroundColor White
     Write-Host "  using ' ' Empty entry ends script       " -ForegroundColor White
+    Write-Host "                                          " -ForegroundColor White
     Write-Host "==========================================" -ForegroundColor Yellow
     
     $do_selected_changes = Read-Host "Entry: "
@@ -126,7 +129,7 @@ while($begin_changes -notin "y","n")
             ConfigureChanges
         }
         {'r' -eq $_}{
-            ConfigureChangesRevert
+            RevertChanges
         }
         {'q' -eq $_}{
             Write-Host "Canceling" -ForegroundColor Red
